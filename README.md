@@ -1,0 +1,2 @@
+# GitHub_LibraryApp
+GitHubに投稿している情報を辞書的に使えるアプリ
