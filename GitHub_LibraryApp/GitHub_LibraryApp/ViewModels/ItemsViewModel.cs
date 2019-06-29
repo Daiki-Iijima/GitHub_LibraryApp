@@ -17,7 +17,7 @@ namespace GitHub_LibraryApp.ViewModels
 
         public ItemsViewModel()
         {
-            Title = "Browse";
+            Title = "一覧表示";
             Items = new ObservableCollection<Item>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
 
