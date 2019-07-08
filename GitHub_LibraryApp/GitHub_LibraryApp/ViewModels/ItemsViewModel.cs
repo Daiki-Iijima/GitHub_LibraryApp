@@ -31,6 +31,8 @@ namespace GitHub_LibraryApp.ViewModels
 
         async Task ExecuteLoadItemsCommand()
         {
+            System.Diagnostics.Trace.WriteLine("aaaaaaaaaaaaa");
+
             if (IsBusy)
                 return;
 
