@@ -25,14 +25,12 @@ namespace GitHub_LibraryApp.ViewModels
             {
                 var newItem = item as Item;
                 Items.Add(newItem);
-                await DataStore.AddItemAsync(newItem);
-            });
+				await DataStore.AddItemAsync(newItem);
+			});
         }
 
         async Task ExecuteLoadItemsCommand()
         {
-            System.Diagnostics.Trace.WriteLine("aaaaaaaaaaaaa");
-
             if (IsBusy)
                 return;
 
@@ -40,12 +38,12 @@ namespace GitHub_LibraryApp.ViewModels
 
             try
             {
-                Items.Clear();
-                var items = await DataStore.GetItemsAsync(true);
-                foreach (var item in items)
-                {
-                    Items.Add(item);
-                }
+                //Items.Clear();
+                //var items = await DataStore.GetItemsAsync(true);
+                //foreach (var item in items)
+                //{
+                //    Items.Add(item);
+                //}
             }
             catch (Exception ex)
             {

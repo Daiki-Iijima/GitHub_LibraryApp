@@ -13,15 +13,15 @@ namespace GitHub_LibraryApp.Services
         public MockDataStore()
         {
             items = new List<Item>();
-            var mockItems = new List<Item>
-            {
-                new Item { Id = Guid.NewGuid().ToString(), Text = "一つ目のItem", Description=$"説明\n{Guid.NewGuid().ToString()}" },
-            };
+            //var mockItems = new List<Item>
+            //{
+            //    new Item { Id = Guid.NewGuid().ToString(), Text = "一つ目のItem", Description=$"説明\n{Guid.NewGuid().ToString()}" },
+            //};
 
-            foreach (var item in mockItems)
-            {
-                items.Add(item);
-            }
+            //foreach (var item in mockItems)
+            //{
+            //    items.Add(item);
+            //}
         }
 
         public async Task<bool> AddItemAsync(Item item)

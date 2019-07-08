@@ -1,4 +1,5 @@
 ﻿using GitHub_LibraryApp.Models;
+using GitHub_LibraryApp.Services;
 using Octokit;
 using PCLStorage;
 using System;
@@ -19,11 +20,11 @@ namespace GitHub_LibraryApp.ViewModels
 
         public AboutViewModel()
         {
-            Title = "GitHubデータ取得";
+			Title = "GitHubデータ取得";
             
             GitLoadCommand = new Command(async () =>
             {
-                var LoadAcountData = await LoadTextAsync();
+                var LoadAcountData = await TextController.LoadTextAsync();
 
                 var spritData = LoadAcountData.Split(',');
 
@@ -68,60 +69,12 @@ namespace GitHub_LibraryApp.ViewModels
                 }
             });
 
-
-            
             SaveCommand = new Command(async () =>
             {
-                await SaveTextAsync($"{UserID},{PassWord}");
+                await TextController.SaveTextAsync($"{UserID},{PassWord}");
             });
         }
 
-        async Task<string> SaveTextAsync(string text)
-        {
-            // フォルダ名、ファイル名を作成
-            var SubFolderName = "GitUserData";
-            var TextFileName = "gitUser.txt";
-
-            // ユーザーデータ保存フォルダー
-            PCLStorage.IFolder localFolder = PCLStorage.FileSystem.Current.LocalStorage;
-
-            // サブフォルダーを作成、または、取得する
-            PCLStorage.IFolder subFolder
-               = await localFolder.CreateFolderAsync(SubFolderName,
-                                        PCLStorage.CreationCollisionOption.OpenIfExists);
-
-            // ファイルを作成、または、取得する
-            PCLStorage.IFile file
-                = await subFolder.CreateFileAsync(TextFileName,
-                                  PCLStorage.CreationCollisionOption.ReplaceExisting);
-
-            // テキストをファイルに書き込む
-            // ※冒頭に「using PCLStorage;」が必要
-            await file.WriteAllTextAsync(text);
-
-            return file.Path;
-        }
-
-        async Task<string> LoadTextAsync()
-        {
-            // フォルダ名、ファイル名を作成
-            var SubFolderName = "GitUserData";
-            var TextFileName = "gitUser.txt";
-
-            // ユーザーデータ保存フォルダー
-            PCLStorage.IFolder localFolder = PCLStorage.FileSystem.Current.LocalStorage;
-
-            // サブフォルダーを作成、または、取得する
-            PCLStorage.IFolder subFolder
-              = await localFolder.CreateFolderAsync(SubFolderName,
-                                    PCLStorage.CreationCollisionOption.OpenIfExists);
-
-            // ファイルを取得する
-            PCLStorage.IFile file = await subFolder.GetFileAsync(TextFileName);
-
-            // テキストファイルを読み込む
-            // ※ファイル冒頭に「using PCLStorage;」が必要
-            return await file.ReadAllTextAsync();
-        } 
+        
     }
 }
