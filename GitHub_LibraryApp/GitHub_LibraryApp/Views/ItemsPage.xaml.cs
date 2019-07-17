@@ -40,11 +40,16 @@ namespace GitHub_LibraryApp.Views
         async void AddItem_Clicked(object sender, EventArgs e)
         {
             await Navigation.PushModalAsync(new NavigationPage(new NewItemPage()));
+
         }
 
+        //  表示した時（表示するたび？）
         protected override void OnAppearing()
         {
             base.OnAppearing();
+            System.Diagnostics.Trace.WriteLine(AboutViewModel.items.Count);
+
+     
 
             if (viewModel.Items.Count == 0)
                 viewModel.LoadItemsCommand.Execute(null);

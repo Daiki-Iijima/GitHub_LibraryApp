@@ -22,6 +22,7 @@ namespace GitHub_LibraryApp.Views
 
         public ItemDetailPage()
         {
+            
             InitializeComponent();
 
             var item = new Item

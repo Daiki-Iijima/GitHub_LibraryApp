@@ -3,6 +3,7 @@ using GitHub_LibraryApp.Services;
 using Octokit;
 using PCLStorage;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -17,6 +18,8 @@ namespace GitHub_LibraryApp.ViewModels
 
         public string UserID { get; set; }
         public string PassWord { get; set; }
+
+        public static List<Item> items = new List<Item>();
 
         public AboutViewModel()
         {
@@ -44,27 +47,28 @@ namespace GitHub_LibraryApp.ViewModels
 
                     var dirInfo2 = await client.Repository.Content.GetAllContents(UserID, "TIL", data.Path);
 
-                    var item = 
-                        new Item {
+                    items.Add(
+                        new Item
+                        {
                             Id = Guid.NewGuid().ToString(),
                             Text = data.Path,
                             Description = $"説明\n{Guid.NewGuid().ToString()}"
-                        };
+                        });
                     
-                    MessagingCenter.Send(this, "AddItem", item);
+                    //MessagingCenter.Send(this, "AddItem", item);
 
                     foreach (RepositoryContent data2 in dirInfo2)
                     {
                         System.Diagnostics.Trace.WriteLine($"{data2.Path}");
 
-                        var item2 = new Item
+                        items.Add(new Item
                         {
                             Id = Guid.NewGuid().ToString(),
                             Text = data2.Path,
                             Description = $"説明\n{Guid.NewGuid().ToString()}"
-                        };
+                        });
 
-                        MessagingCenter.Send(this, "AddItem", item2);
+                        //MessagingCenter.Send(this, "AddItem", item2);
                     }
                 }
             });
