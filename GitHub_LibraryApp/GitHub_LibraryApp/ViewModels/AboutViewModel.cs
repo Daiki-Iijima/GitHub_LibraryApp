@@ -54,8 +54,13 @@ namespace GitHub_LibraryApp.ViewModels
                             Text = data.Path,
                             Description = $"説明\n{Guid.NewGuid().ToString()}"
                         });
-                    
-                    //MessagingCenter.Send(this, "AddItem", item);
+
+                    await DataStore.AddItemAsync(new Item
+                    {
+                        Id = Guid.NewGuid().ToString(),
+                        Text = data.Path,
+                        Description = $"説明\n{Guid.NewGuid().ToString()}"
+                    });
 
                     foreach (RepositoryContent data2 in dirInfo2)
                     {

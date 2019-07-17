@@ -47,9 +47,6 @@ namespace GitHub_LibraryApp.Views
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            System.Diagnostics.Trace.WriteLine(AboutViewModel.items.Count);
-
-     
 
             if (viewModel.Items.Count == 0)
                 viewModel.LoadItemsCommand.Execute(null);

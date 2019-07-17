@@ -38,12 +38,13 @@ namespace GitHub_LibraryApp.ViewModels
 
             try
             {
-                //Items.Clear();
-                //var items = await DataStore.GetItemsAsync(true);
-                //foreach (var item in items)
-                //{
-                //    Items.Add(item);
-                //}
+                Items.Clear();
+
+                //  取得したデータの更新
+                foreach (var item in AboutViewModel.items)
+                {
+                    Items.Add(item);
+                }
             }
             catch (Exception ex)
             {
