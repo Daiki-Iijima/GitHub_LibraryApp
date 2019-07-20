@@ -29,6 +29,8 @@ namespace GitHub_LibraryApp.ViewModels
 			});
         }
 
+
+        //  ViewのRefreshCommandにBindingされていた
         async Task ExecuteLoadItemsCommand()
         {
             if (IsBusy)
